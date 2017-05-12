@@ -1,8 +1,8 @@
-FROM alpine:latest
+FROM docker:latest
 
-RUN apk update && apk add openssh-client bash
+RUN apk update && apk add openssh-client
 
 # Security fix for CVE-2016-0777 and CVE-2016-0778
 RUN echo -e 'Host *\nUseRoaming no' >> /etc/ssh/ssh_config
 
-ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT ["/bin/sh"]
