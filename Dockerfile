@@ -1,8 +1,5 @@
-FROM docker:latest
+FROM debian:jessie
 
-RUN apk update && apk add openssh-client
-
-# Security fix for CVE-2016-0777 and CVE-2016-0778
-RUN echo -e 'Host *\nUseRoaming no' >> /etc/ssh/ssh_config
-
-ENTRYPOINT ["/bin/sh"]
+RUN apt-get update && apt-get install -y --no-install-recommends \
+		openssh-client \
+	&& rm -rf /var/lib/apt/lists/*
